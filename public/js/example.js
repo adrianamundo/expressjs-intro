@@ -13,3 +13,15 @@ $(document).ready(function() {
         }
     })
 })
+$(document).ready(function() {
+    $('.delete').click(function() {
+        let otherName = $(this).closest('#target').clone().children().remove().end().text()
+        let Name = otherName.replace(" ", "")
+        console.log(Name);
+        $(this).closest('#target').remove()
+        $.post('/delete-user', {name:Name}, function(data, status) {
+            console.log(`${data.message} and status is ${status}`)
+            alert(data.message)
+        })
+    })
+})
